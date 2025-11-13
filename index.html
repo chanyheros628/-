@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선택의 여정</title>
+  <style>
+    body {
+      font-family: "Pretendard", sans-serif;
+      background: linear-gradient(to bottom, #e3f2fd, #fff);
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffffcc;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    button {
+      margin: 10px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      background: #42a5f5;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1e88e5;
+    }
+    .fade {
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade" id="game">
+    <h1>🌿 선택의 여정 🌊</h1>
+    <p id="story">오늘은 특별한 여행의 날입니다. 당신은 어느 길로 떠나시겠습니까?</p>
+    <div id="choices">
+      <button onclick="choose('mountain')">⛰ 산으로 간다</button>
+      <button onclick="choose('sea')">🌊 바다로 간다</button>
+    </div>
+  </div>
+
+  <script>
+    const story = document.getElementById('story');
+    const choices = document.getElementById('choices');
+
+    function choose(path) {
+      if (path === 'mountain') {
+        story.innerText = "당신은 산의 고요한 길을 걷습니다. 새소리가 들리고, 맑은 공기가 가슴을 채웁니다.";
+        choices.innerHTML = `
+          <button onclick="choose('rest')">잠시 쉬어간다</button>
+          <button onclick="choose('climb')">정상까지 오른다</button>
+        `;
+      } 
+      else if (path === 'sea') {
+        story.innerText = "당신은 푸른 파도가 부서지는 해변에 섭니다. 햇살이 눈부시게 반짝입니다.";
+        choices.innerHTML = `
+          <button onclick="choose('swim')">바다에 들어간다</button>
+          <button onclick="choose('shell')">조개껍데기를 줍는다</button>
+        `;
+      }
+      else if (path === 'rest') {
+        story.innerText = "당신은 바위에 앉아 깊은 숨을 쉽니다. 마음속에 평화가 찾아옵니다.";
+        choices.innerHTML = `<button onclick="restart()">다시 시작하기</button>`;
+      }
+      else if (path === 'climb') {
+        story.innerText = "힘겹게 오른 끝에 당신은 정상에 섭니다. 세상이 발아래 펼쳐집니다.";
+        choices.innerHTML = `<button onclick="restart()">다시 시작하기</button>`;
+      }
+      else if (path === 'swim') {
+        story.innerText = "차가운 파도가 몸을 감쌉니다. 당신은 자유로움을 느낍니다.";
+        choices.innerHTML = `<button onclick="restart()">다시 시작하기</button>`;
+      }
+      else if (path === 'shell') {
+        story.innerText = "조개껍데기를 들여다보니, 그 속에 하얀 빛이 반짝입니다. 새로운 모험이 시작될 것 같습니다.";
+        choices.innerHTML = `<button onclick="restart()">다시 시작하기</button>`;
+      }
+    }
+
+    function restart() {
+      story.innerText = "오늘은 특별한 여행의 날입니다. 당신은 어느 길로 떠나시겠습니까?";
+      choices.innerHTML = `
+        <button onclick="choose('mountain')">⛰ 산으로 간다</button>
+        <button onclick="choose('sea')">🌊 바다로 간다</button>
+      `;
+    }
+  </script>
+</body>
+</html>
