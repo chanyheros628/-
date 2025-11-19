@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>문명 선택 멸망 엔딩 게임</title>
+    <style>
+        body { font-family: Arial; background:#111; color:#eee; text-align:center; padding:20px; }
+        .choice { margin:20px; padding:15px; background:#222; border-radius:10px; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <h1>🌍 문명 선택 게임</h1>
+    <h3>당신의 선택이 문명을 결정합니다</h3>
+
+    <div id="game"></div>
+
+<script>
+function showEnding(text){
+    document.getElementById("game").innerHTML = "<h2>" + text + "</h2>";
+}
+
+function startGame(){
+    document.getElementById("game").innerHTML = `
+        <h2>🔬 유전자 변이 연구 시작</h2>
+        <div class='choice' onclick='step2()'>🧬 A. 국민 전체 유전자 강화</div>
+        <div class='choice' onclick='showEnding("중립 엔딩: 조용히 지나간 시대")'>💉 B. 의료용만 허용 (안전)</div>
+    `;
+}
+
+function step2(){
+    document.getElementById("game").innerHTML = `
+        <h2>⚠️ 변이 발생!</h2>
+        <div class='choice' onclick='step3()'>💊 A. 억제 약물 개발</div>
+        <div class='choice' onclick='showEnding("☠️ 멸망 엔딩: 변이 대확산")'>🧪 B. 유전자 삭제 시도 → 실패</div>
+    `;
+}
+
+function step3(){
+    document.getElementById("game").innerHTML = `
+        <h2>☣️ 변이 공기 전파 시작</h2>
+        <div class='choice' onclick='showEnding("⚠️ 생존 엔딩: 아슬아슬한 봉쇄 성공")'>🚧 A. 도시 봉쇄</div>
+        <div class='choice' onclick='showEnding("☠️ 멸망 엔딩: 통제 실패")'>😶 B. 숨기기 → 통제 실패</div>
+    `;
+}
+
+startGame();
+</script>
+
+</body>
+</html>
